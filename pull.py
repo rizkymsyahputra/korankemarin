@@ -15,6 +15,15 @@ tanggal= str(gettime[2])
 jam= str(gettime[3])
 menit= str(gettime[4])
 
+# Cek jam dan memberi informasi apakah yang akan di download koran kemarin atau hari ini
+if int(jam) > 16:
+    print("++ FETCHING ALL PAGE OF TODAY SERAMBI EPAPER ++")
+else:
+    if int(tanggal)>1:
+        tanggal= int(tanggal)-1
+        tanggal=str(tanggal)
+    print("++ FETCHING ALL PAGE OF YESTERDAY SERAMBI EPAPER ++")
+
 # Format nama folder per harian
 foldername= tahun+"_"+bulan+"_"+tanggal
 
@@ -36,13 +45,6 @@ while True:
         os.mkdir(foldername)
         os.chdir(foldername)
         break
-
-# Cek jam dan memberi informasi apakah yang akan di download koran kemarin atau hari ini
-if int(jam) > 16:
-    print("++ FETCHING ALL PAGE OF TODAY SERAMBI EPAPER ++")
-else:
-    print("++ FETCHING ALL PAGE OF YESTERDAY SERAMBI EPAPER ++")
-
 
 # Eksekusi download file halaman pertama sampai halaman terakhir
 for page in range(1,25) :
